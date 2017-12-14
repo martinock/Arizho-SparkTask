@@ -1,0 +1,4 @@
+[0m[[0m[31merror[0m] [0m[0m/Users/zhorifiandi/Documents/itb/pat/Spark_TwitterSecondLevelFollowers/src/main/scala/com/tugaspat/tugasspark/SecondLevelFollowers.scala:12:18: not found: value sc[0m
+[0m[[0m[31merror[0m] [0m[0m		val textFile = sc.textFile(args(1))[0m
+[0m[[0m[31merror[0m] [0m[0m		               ^[0m
+[0m[[0m[31merror[0m] [0m[0mone error found[0m
