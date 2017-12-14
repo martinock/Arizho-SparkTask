@@ -1,4 +1,10 @@
-[0m[[0m[31merror[0m] [0m[0m/Users/zhorifiandi/Documents/itb/pat/Spark_TwitterSecondLevelFollowers/src/main/scala/com/tugaspat/tugasspark/SecondLevelFollowers.scala:12:18: not found: value sc[0m
-[0m[[0m[31merror[0m] [0m[0m		val textFile = sc.textFile(args(1))[0m
-[0m[[0m[31merror[0m] [0m[0m		               ^[0m
-[0m[[0m[31merror[0m] [0m[0mone error found[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/zhorifiandi/Documents/itb/pat/Arizho-SparkTask/src/main/scala/com/tugaspat/tugasspark/SecondLevelFollowers.scala:61:7: not found: type PrintWriter[0m
+[0m[[0m[31merror[0m] [0m[0m		new PrintWriter("outputpacil.txt") { write(listTotalSecondFollower.take(10).mkString("[", ",", "]")); close }[0m
+[0m[[0m[31merror[0m] [0m[0m		    ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/zhorifiandi/Documents/itb/pat/Arizho-SparkTask/src/main/scala/com/tugaspat/tugasspark/SecondLevelFollowers.scala:61:40: not found: value write[0m
+[0m[[0m[31merror[0m] [0m[0m		new PrintWriter("outputpacil.txt") { write(listTotalSecondFollower.take(10).mkString("[", ",", "]")); close }[0m
+[0m[[0m[31merror[0m] [0m[0m		                                     ^[0m
+[0m[[0m[31merror[0m] [0m[0m/Users/zhorifiandi/Documents/itb/pat/Arizho-SparkTask/src/main/scala/com/tugaspat/tugasspark/SecondLevelFollowers.scala:61:105: not found: value close[0m
+[0m[[0m[31merror[0m] [0m[0m		new PrintWriter("outputpacil.txt") { write(listTotalSecondFollower.take(10).mkString("[", ",", "]")); close }[0m
+[0m[[0m[31merror[0m] [0m[0m		                                                                                                      ^[0m
+[0m[[0m[31merror[0m] [0m[0mthree errors found[0m
