@@ -24,7 +24,7 @@ object SecondLevelFollowers {
 		def generateFirstKV(lines: Array[String]) : ListBuffer[(String,String)] = {
 			var temp_container = new ListBuffer[(String,String)]()
 			for (line <- lines) {
-				val a = line.split(" ")
+				val a = line.split("\t")
 				temp_container += ((a(0), "follows:".concat(a(1)) ))
 				temp_container += ((a(1), "followed_by:".concat(a(0)) ))
 			}
