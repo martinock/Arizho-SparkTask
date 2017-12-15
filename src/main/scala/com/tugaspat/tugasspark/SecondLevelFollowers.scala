@@ -7,6 +7,7 @@ import org.apache.spark.SparkConf
 import java.io._
 
 import scala.collection.mutable.ListBuffer
+import scala.collection.immutable.Vector
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -15,23 +16,31 @@ object SecondLevelFollowers {
 	@transient lazy val Logger = LoggerFactory.getLogger(this.getClass)
 
 	def main(args: Array[String]) {
+		// x for follows
+		// y for followed_by
 
 		val conf = new SparkConf().setAppName("Spark Arizho SecondLevelFollowers")
     	val sc = new SparkContext(conf)
 
 		val textFile = sc.textFile(args(0))
 
-		def generateFirstKV(lines: Array[String]) : ListBuffer[(String,String)] = {
-			var temp_container = new ListBuffer[(String,String)]()
-			for (line <- lines) {
-				val a = line.split("\t")
-				temp_container += ((a(0), "follows:".concat(a(1)) ))
-				temp_container += ((a(1), "followed_by:".concat(a(0)) ))
-			}
-			return temp_container
-		}
+		// def generateFirstKV(lines: Array[String]) : ListBuffer[(String,String)] = {
+		// 	var temp_container = new ListBuffer[(String,String)]()
+		// 	for (line <- lines) {
+		// 		val a = line.split("\t")
+		// 		temp_container += ((a(0), "x:".concat(a(1)) ))
+		// 		temp_container += ((a(1), "y:".concat(a(0)) ))
+		// 	}
+		// 	return temp_container
+		// }
 
-		val firstIterationMapper = textFile.flatMap(s => generateFirstKV(s.split("\n")))
+		// val firstIterationMapper = textFile.flatMap(s => generateFirstKV(s.split("\n")))
+
+		val firstIterationMapper = textFile.flatMap( line => 
+			{ val a = line.split("\t")
+			  Vector((a(0),  "x:".concat(a(1)) ),(a(1), "y:".concat(a(0))) )}
+		)
+
 		val firstIterationShuffler = firstIterationMapper.reduceByKey((x, y) => x++" "++y)
 
 		def generateSecondFollowers(tuple: (String, String)): ListBuffer[(String, String)] = {
@@ -39,7 +48,7 @@ object SecondLevelFollowers {
 			val list_of_followers = new ListBuffer[String]()
 			val list_of_following = new ListBuffer[String]()
 			for (value <- tuple._2.split(" ")){
-				if (value.split(":")(0) == "follows") {
+				if (value.split(":")(0) == "x") {
 					list_of_following += value.split(":")(1)
 				}
 				else {
